@@ -29,6 +29,13 @@ public class ExampleListener implements MessageListener {
             catch (JMSException ex) {
                 throw new RuntimeException(ex);
             }
+        } else if(message instanceof ObjectMessage){
+            final ObjectMessage objectMessage = (ObjectMessage) message;
+            try {
+                System.out.println(objectMessage.getObject());
+            } catch (JMSException e) {
+                e.printStackTrace();
+            }
         }
         else {
             throw new IllegalArgumentException("Message must be of type TextMessage");
